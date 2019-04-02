@@ -1,6 +1,11 @@
 
-use sdl2::{ VideoSubsystem, video::{ Window, GLContext } };
+use std::{ cmp::{ Ord, Ordering }, collections::BinaryHeap, os::raw::c_void };
+
+use sdl2::{ VideoSubsystem, video::{ Window, GLContext, GLProfile::Core } };
 use gl;
+
+use crate::shader::Shader;
+use crate::model::Model;
 
 
 
@@ -15,9 +20,51 @@ pub trait RenderObject
 
 
 
+#[derive(Eq)]
+struct RenderCommand
+{
+    // Shader
+    // Variables
+    // Model
+    // Transform matrix.
+}
+
+
+
+impl Ord for RenderCommand
+{
+    fn cmp(&self, _other: &RenderCommand) -> Ordering
+    {
+        Ordering::Equal
+    }
+}
+
+
+
+impl PartialOrd for RenderCommand
+{
+    fn partial_cmp(&self, other: &RenderCommand) -> Option<Ordering>
+    {
+        Some(self.cmp(other))
+    }
+}
+
+
+
+impl PartialEq for RenderCommand
+{
+    fn eq(&self, _other: &RenderCommand) -> bool
+    {
+        true
+    }
+}
+
+
+
 pub struct Graphics
 {
-    pub gl_context: GLContext
+    pub gl_context: GLContext,
+    // render_objects: BinaryHeap<RenderCommand>
 }
 
 
@@ -30,12 +77,12 @@ impl Graphics
 
         gl::load_with(|s|
             {
-                sdl_video.gl_get_proc_address(s) as *const std::os::raw::c_void
+                sdl_video.gl_get_proc_address(s) as *const c_void
             });
 
         let gl_attr = sdl_video.gl_attr();
 
-        gl_attr.set_context_profile(sdl2::video::GLProfile::Core);
+        gl_attr.set_context_profile(Core);
         gl_attr.set_context_version(4, 2);
 
         unsafe
@@ -45,7 +92,8 @@ impl Graphics
 
         Graphics
         {
-            gl_context
+            gl_context,
+            //render_objects: BinaryHeap::new()
         }
     }
 
