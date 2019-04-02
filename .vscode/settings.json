@@ -1,0 +1,19 @@
+
+{
+    "files.exclude":
+    {
+        "**/.git": true,
+        "**/target": true,
+        "Cargo.lock": true
+    },
+
+    "cSpell.words":
+    [
+        "keydown",
+        "keyup",
+        "vectrex",
+        "vedlitrex",
+        "vemodlatrex",
+        "voxlatrex"
+    ]
+}

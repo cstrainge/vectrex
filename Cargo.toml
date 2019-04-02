@@ -1,0 +1,13 @@
+[workspace]
+
+members = [
+        "bin/vectrex",
+        "bin/vedlitrex",
+        "bin/voxlatrex",
+        "bin/vemodlatrex",
+
+        "lib/vectrex_core",
+        "lib/vectrex_worlds",
+        "lib/vectrex_ai",
+        "lib/vectrex_net"
+    ]

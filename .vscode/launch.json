@@ -1,0 +1,27 @@
+
+{
+    "version": "0.2.0",
+
+    "configurations":
+    [
+        {
+            "type":          "lldb",
+            "request":       "launch",
+            "preLaunchTask": "Cargo Debug Build",
+            "name":          "Debug",
+            "cwd":           "${workspaceRoot}",
+            "program":       "${workspaceRoot}/target/debug/vectrex",
+            "args":          []
+        },
+
+        {
+            "type":          "lldb",
+            "request":       "launch",
+            "preLaunchTask": "Cargo Release Build",
+            "name":          "Release",
+            "cwd":           "${workspaceRoot}",
+            "program":       "${workspaceRoot}/target/debug/vectrex",
+            "args":          []
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+
+[package]
+name = "vectrex_worlds"
+version = "0.0.0"
+authors = ["Chloe Strainge <nullptr.0@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+vectrex_core = { path = "../vectrex_core" }
