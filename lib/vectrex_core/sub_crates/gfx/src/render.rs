@@ -6,7 +6,10 @@ use gl;
 
 pub trait RenderObject
 {
+    #[inline]
     fn bind(&self);
+
+    #[inline]
     fn unbind(&self);
 }
 
