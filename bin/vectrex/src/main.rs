@@ -12,7 +12,7 @@ fn main()
         {
             title: "New Game +",
             full_screen: false,
-            resizeable: true,
+            resizable: true,
             width: 800,
             height: 600
         });

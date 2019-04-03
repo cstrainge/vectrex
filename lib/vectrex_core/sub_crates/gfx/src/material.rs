@@ -2,22 +2,22 @@
 
 use gl;
 
-use crate::render::RenderObject;
+use crate::render::Bindable;
 
 
 
-pub struct Shader
+#[derive(PartialEq, Eq)]
+pub struct Material
 {
-    //
 }
 
 
 
-impl Shader
+impl Material
 {
-    pub fn new() -> Shader
+    pub fn new() -> Material
     {
-        Shader
+        Material
         {
         }
     }
@@ -25,7 +25,7 @@ impl Shader
 
 
 
-impl RenderObject for Shader
+impl Bindable for Material
 {
     fn bind(&self)
     {

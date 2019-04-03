@@ -1,14 +1,15 @@
 
 
-use gl;
+use gl::{ self, types::{ GLuint } };
 
-use crate::render::RenderObject;
+use crate::render::Bindable;
 
 
 
+#[derive(PartialEq, Eq)]
 pub struct Shader
 {
-    //
+    program_id: GLuint
 }
 
 
@@ -19,13 +20,14 @@ impl Shader
     {
         Shader
         {
+            program_id: 0
         }
     }
 }
 
 
 
-impl RenderObject for Shader
+impl Bindable for Shader
 {
     fn bind(&self)
     {

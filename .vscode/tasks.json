@@ -5,15 +5,15 @@
     "tasks":
     [
         {
-            "label": "Cargo Debug Build",
-            "type": "shell",
+            "label":   "Cargo Debug Build",
+            "type":    "shell",
 
             "command": "cargo",
-            "args": [ "build" ],
+            "args":    [ "build" ],
 
             "group":
             {
-                "kind": "build",
+                "kind":      "build",
                 "isDefault": true
             },
 
@@ -31,11 +31,11 @@
         },
 
         {
-            "label": "Cargo Release Build",
-            "type": "shell",
+            "label":   "Cargo Release Build",
+            "type":    "shell",
 
             "command": "cargo",
-            "args": [ "build", "--release" ],
+            "args":    [ "build", "--release" ],
 
             "problemMatcher": [ "$rustc" ],
 

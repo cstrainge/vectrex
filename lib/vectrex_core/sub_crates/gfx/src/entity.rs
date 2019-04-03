@@ -1,7 +1,7 @@
 
 use gl;
 
-use crate::render::RenderObject;
+use crate::render::Bindable;
 use crate::shader::Shader;
 use crate::model::Model;
 
@@ -65,7 +65,7 @@ impl GfxEntity
 
 
 
-impl RenderObject for GfxEntity
+impl Bindable for GfxEntity
 {
     fn bind(&self)
     {

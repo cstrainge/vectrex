@@ -20,7 +20,7 @@ pub struct WindowProps
 {
     pub title: &'static str,
     pub full_screen: bool,
-    pub resizeable: bool,
+    pub resizable: bool,
     pub width: u32,
     pub height: u32
 }
@@ -51,12 +51,12 @@ impl ShellWindow
         let sdl_video = match sdl_context.video()
             {
                 Ok(context)  => context,
-                Err(message) => sdl_fail("Could not aquire SDL video context.", &message)
+                Err(message) => sdl_fail("Could not acquire SDL video context.", &message)
             };
 
         let window: Window;
 
-        if props.resizeable
+        if props.resizable
         {
             window = sdl_video.window(props.title, props.width, props.height)
                 .position_centered()
@@ -90,7 +90,7 @@ impl ShellWindow
         let mut event_pump = match self.sdl_context.event_pump()
             {
                 Ok(pump)     => pump,
-                Err(message) => sdl_fail("Could not aquire context event pump.", &message)
+                Err(message) => sdl_fail("Could not acquire context event pump.", &message)
             };
 
         'main_loop: loop

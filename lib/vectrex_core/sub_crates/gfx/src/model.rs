@@ -2,10 +2,11 @@
 use std::mem::size_of;
 use gl::{ self, types::{ GLuint, GLsizeiptr, GLvoid } };
 
-use crate::render::RenderObject;
+use crate::render::Bindable;
 
 
 
+#[derive(PartialEq, Eq)]
 pub struct Model
 {
     vertex_buffer_object: GLuint
@@ -49,7 +50,16 @@ impl Model
 
 
 
-impl RenderObject for Model
+//impl PartialEq for Model
+//{
+//    fn eq(&self, other: &Model) -> bool
+//    {
+//    }
+//}
+
+
+
+impl Bindable for Model
 {
     #[inline]
     fn bind(&self)

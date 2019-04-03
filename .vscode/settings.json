@@ -9,13 +9,48 @@
 
     "cSpell.words":
     [
+        "Keycode",
         "Lsizeiptr",
         "Luint",
+        "Lvoid",
+        "Scancode",
+        "actix",
+        "cranelift",
         "keydown",
+        "keymod",
         "keyup",
+        "meshopt",
+        "mousestate",
         "vectrex",
         "vedlitrex",
         "vemodlatrex",
-        "voxlatrex"
+        "voxlatrex",
+        "xrel",
+        "yrel"
+    ],
+
+    "cSpell.language": "en,en-US",
+
+    "cSpell.enabledLanguageIds":
+    [
+        "asciidoc",
+        "c",
+        "cmake",
+        "cpp",
+        "csharp",
+        "go",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "latex",
+        "markdown",
+        "php",
+        "plaintext",
+        "python",
+        "rust",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yml"
     ]
 }

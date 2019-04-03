@@ -9,7 +9,7 @@ use crate::model::Model;
 
 
 
-pub trait RenderObject
+pub trait Bindable
 {
     #[inline]
     fn bind(&self);
@@ -19,14 +19,74 @@ pub trait RenderObject
 }
 
 
-
 #[derive(Eq)]
 struct RenderCommand
 {
-    // Shader
+    shader: Option<Shader>,
     // Variables
-    // Model
-    // Transform matrix.
+    model: Option<Model>,
+    transform: Option<f32>
+}
+
+
+
+fn some_matcher<type_t, result_t> (a: Option<type_t>, b: Option<type_t>, default: result_t
+                                   checker: &Fn(type_t, type_t)-> result_t) -> result_t
+    where type_t: PartialEq
+{
+    match (a, b)
+        {
+            (Some(a_some), Some(b_some)) =>
+                {
+                    checker(a_some, b_some)
+                }
+
+            (_, _) => default
+        }
+}
+
+
+
+impl PartialEq for RenderCommand
+{
+    fn eq(&self, other: &RenderCommand) -> bool
+    {
+        let result = match (self.shader, other.shader)
+            {
+                (Some(this_shader), Some(other_shader)) =>
+                    {
+                        this_shader == other_shader
+                    }
+
+                    (_, _) => false
+            }
+
+            &&
+
+            match (self.model, other.model)
+                {
+                    (Some(this_model), Some(other_model)) =>
+                        {
+                            this_model == other_model
+                        }
+
+                    (_, _) => false
+                }
+
+            &&
+
+            match (self.transform, other.transform)
+                {
+                    (Some(this_transform), Some(other_transform)) =>
+                        {
+                            this_transform == other_transform
+                        }
+
+                    (_, _) => false
+                };
+
+        result
+    }
 }
 
 
@@ -46,16 +106,6 @@ impl PartialOrd for RenderCommand
     fn partial_cmp(&self, other: &RenderCommand) -> Option<Ordering>
     {
         Some(self.cmp(other))
-    }
-}
-
-
-
-impl PartialEq for RenderCommand
-{
-    fn eq(&self, _other: &RenderCommand) -> bool
-    {
-        true
     }
 }
 
