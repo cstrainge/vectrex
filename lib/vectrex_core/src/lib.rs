@@ -1,16 +1,15 @@
 
-extern crate vectrex_msg;
-
 extern crate vectrex_os_shell;
+extern crate vectrex_ecs;
 extern crate vectrex_gfx;
 extern crate vectrex_gfx_gui;
 extern crate vectrex_srl;
 
 
 
-pub mod msg
+pub mod ecs
 {
-    pub use vectrex_msg::*;
+    pub use vectrex_ecs::*;
 }
 
 

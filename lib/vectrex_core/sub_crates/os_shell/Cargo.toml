@@ -10,4 +10,4 @@ crate-type = [ "rlib" ]
 
 [dependencies]
 vectrex_gfx = { path = "../gfx" }
-sdl2 = { version = "0.32.1", features = [ "bundled" ] }
+sdl2 = { version = "0.31.0", features = [ "bundled" ] }

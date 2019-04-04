@@ -9,7 +9,7 @@ edition = "2018"
 crate-type = [ "dylib" ]
 
 [dependencies]
-vectrex_msg      = { path = "sub_crates/msg"      }
+vectrex_ecs      = { path = "sub_crates/ecs"      }
 vectrex_os_shell = { path = "sub_crates/os_shell" }
 vectrex_gfx      = { path = "sub_crates/gfx"      }
 vectrex_gfx_gui  = { path = "sub_crates/gfx_gui"  }

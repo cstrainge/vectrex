@@ -1,10 +1,10 @@
 
 [package]
-name = "vectrex"
+name    = "vectrex"
 version = "0.0.0"
 authors = ["Chloe Strainge <nullpr.0@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-vectrex_core = { path = "../../lib/vectrex_core" }
+vectrex_core   = { path = "../../lib/vectrex_core" }
 vectrex_worlds = { path = "../../lib/vectrex_worlds" }
