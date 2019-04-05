@@ -10,8 +10,6 @@ pub struct ComponentId(u64);
 
 impl SystemId for ComponentId
 {
-    type IdType = ComponentId;
-
     fn new(generation: u32, index: u32) -> ComponentId
     {
         ComponentId(((generation as u64) << 32) | (index as u64))
@@ -22,9 +20,9 @@ impl SystemId for ComponentId
         ((self.0 & 0xFFFFFFFF00000000) >> 32) as u32
     }
 
-    fn index(&self) -> u32
+    fn index(&self) -> usize
     {
-        (self.0 & 0x00000000FFFFFFFF) as u32
+        (self.0 & 0x00000000FFFFFFFF) as usize
     }
 }
 
