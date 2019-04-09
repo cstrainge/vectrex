@@ -62,12 +62,10 @@ pub mod engine
 
     impl Engine
     {
-        pub fn new(props: WindowProps) -> Engine
+        pub fn new(props: WindowProps) -> Result<Engine, String>
         {
-            Engine
-            {
-                window: ShellWindow::new(props)
-            }
+            let window = ShellWindow::new(props)?;
+            Ok(Engine { window: window })
         }
 
         pub fn version(&self) -> &'static str

@@ -30,9 +30,9 @@ pub struct Graphics
 
 impl Graphics
 {
-    pub fn new(sdl_video: &VideoSubsystem, window: &Window) -> Graphics
+    pub fn new(sdl_video: &VideoSubsystem, window: &Window) -> Result<Graphics, String>
     {
-        let gl_context = window.gl_create_context().unwrap();
+        let gl_context = window.gl_create_context()?;
 
         gl::load_with(|s|
             {
@@ -49,11 +49,11 @@ impl Graphics
             gl::ClearColor(0.3, 0.3, 0.5, 1.0);
         }
 
-        Graphics
-        {
-            gl_context,
-            //render_objects: BinaryHeap::new()
-        }
+        Ok(Graphics
+            {
+                gl_context
+                //render_objects: BinaryHeap::new()
+            })
     }
 
     pub fn resize_view(&self, width: i32, height: i32)

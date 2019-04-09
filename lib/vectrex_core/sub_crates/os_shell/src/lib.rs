@@ -6,7 +6,7 @@ use sdl2::{
         init,
         Sdl,
         VideoSubsystem,
-        video::Window,
+        video::{ Window, WindowBuilder },
         event::{ Event, WindowEvent },
         keyboard::{ Keycode, Scancode, Mod },
         mouse::{ MouseState, MouseButton, MouseWheelDirection }
@@ -40,49 +40,40 @@ pub struct ShellWindow
 
 impl ShellWindow
 {
-    pub fn new(props: WindowProps) -> ShellWindow
+    pub fn new(props: WindowProps) -> Result<ShellWindow, String>
     {
-        let sdl_context = match init()
+        let sdl_context = init()?;
+        let sdl_video = sdl_context.video()?;
+
+        let mut window_builder = sdl_video.window(props.title, props.width, props.height);
+
+        let window =
+            ShellWindow::build_resizable(&mut window_builder, &props)
+            .position_centered()
+            .opengl()
+            .build()
+            .or_else(|err| Err(err.to_string()) )?;
+
+        let graphics = Graphics::new(&sdl_video, &window)?;
+
+        Ok(ShellWindow
             {
-                Ok(sdl)      => sdl,
-                Err(message) => sdl_fail("Could not init the SDL2 library.", &message)
-            };
+                sdl_context: sdl_context,
+                _sdl_video: sdl_video,
+                window: window,
+                graphics
+            })
+    }
 
-        let sdl_video = match sdl_context.video()
-            {
-                Ok(context)  => context,
-                Err(message) => sdl_fail("Could not acquire SDL video context.", &message)
-            };
-
-        let window: Window;
-
+    fn build_resizable<'a>(builder: &'a mut WindowBuilder, props: &WindowProps)
+        -> &'a mut WindowBuilder
+    {
         if props.resizable
         {
-            window = sdl_video.window(props.title, props.width, props.height)
-                .position_centered()
-                .resizable()
-                .opengl()
-                .build()
-                .unwrap();
-        }
-        else
-        {
-            window = sdl_video.window(props.title, props.width, props.height)
-                .position_centered()
-                .opengl()
-                .build()
-                .unwrap();
+            return builder.resizable();
         }
 
-        let graphics = Graphics::new(&sdl_video, &window);
-
-        ShellWindow
-        {
-            sdl_context: sdl_context,
-            _sdl_video: sdl_video,
-            window: window,
-            graphics
-        }
+        builder
     }
 
     pub fn event_loop(&mut self)
