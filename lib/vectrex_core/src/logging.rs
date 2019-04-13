@@ -1,12 +1,12 @@
 
-use std::{ cell::RefCell, fs::File, io::{ Write, BufWriter }, sync::Mutex };
-use log::{ Log, set_boxed_logger, Metadata, Record };
+use std::{ fs::File, io::Write, sync::Mutex };
+use log::{ Log, set_boxed_logger, set_max_level, Level, Metadata, Record };
 
 
 
 struct Logger
 {
-    log_writer: Mutex<RefCell<BufWriter<File>>>
+    log_mutex: Mutex<File>
 }
 
 
@@ -16,14 +16,7 @@ impl Logger
     fn new() -> Result<Logger, String>
     {
         let log_file = File::create("./vectrex-log.txt").map_err(|error| error.to_string())?;
-        let log_writer = BufWriter::new(log_file);
-
-        let logger = Logger
-            {
-                log_writer: Mutex::new(RefCell::new(log_writer))
-            };
-
-        Ok(logger)
+        Ok(Logger { log_mutex: Mutex::new(log_file) })
     }
 }
 
@@ -38,21 +31,24 @@ impl Log for Logger
 
     fn log(&self, record: &Record)
     {
-        let writer_mutex = self.log_writer.lock().unwrap();
-        let mut writer_ref = writer_mutex.borrow_mut();
+        let level = record.level().to_string();
+        let module_path = record.module_path().unwrap_or_default();
+        let args = record.args();
 
-        writer_ref.write_fmt(format_args!("{} | {} | {}",
-                                      record.target(),
-                                      record.level(),
-                                      record.args())).unwrap();
+        match self.log_mutex.lock()
+        {
+            Ok(mut log_file) => write!(log_file, "{} | {} | {}", level, module_path, args).unwrap(),
+            _                => println!("** LOG WRITE ERROR **")
+        }
+
+        println!("{} | {} | {}", level, module_path, args);
+
     }
 
     fn flush(&self)
     {
-        let writer_mutex = self.log_writer.lock().unwrap();
-        let mut writer_ref = writer_mutex.borrow_mut();
-
-        writer_ref.flush().unwrap();
+        let mut log_file = self.log_mutex.lock().unwrap();
+        log_file.flush().unwrap();
     }
 }
 
@@ -72,6 +68,8 @@ pub fn init_logging() -> Result<(), String>
 
         _ => {}
     }
+
+    set_max_level(Level::Trace.to_level_filter());
 
     Ok(())
 }
