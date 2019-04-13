@@ -200,8 +200,8 @@ impl ShellWindow
 
 fn sdl_fail(message: &'static str, reason: &String) -> !
 {
-    panic!("Error:       {}\n\
-            Reason:      {}\n\
+    panic!("Error:       {}\n
+            Reason:      {}\n
             SDL Version: {}",
             message, reason, sdl2::version::revision());
 }

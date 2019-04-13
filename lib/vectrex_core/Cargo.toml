@@ -16,3 +16,4 @@ vectrex_gfx_gui  = { path = "sub_crates/gfx_gui"  }
 vectrex_srl      = { path = "sub_crates/srl"      }
 
 # lazy_static = "0.1.15"
+log = "0.4.6"

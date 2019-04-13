@@ -5,6 +5,11 @@ extern crate vectrex_gfx;
 extern crate vectrex_gfx_gui;
 extern crate vectrex_srl;
 
+extern crate log;
+
+
+mod logging;
+
 
 
 pub mod ecs
@@ -45,7 +50,14 @@ pub mod srl
 
 pub mod engine
 {
+    pub mod log
+    {
+        pub use crate::log::{ info, warn, error };
+    }
+
+
     use crate::os::shell::{ WindowProps, ShellWindow };
+    use crate::logging::init_logging;
 
 
 
@@ -64,6 +76,8 @@ pub mod engine
     {
         pub fn new(props: WindowProps) -> Result<Engine, String>
         {
+            init_logging()?;
+
             let window = ShellWindow::new(props)?;
             Ok(Engine { window: window })
         }

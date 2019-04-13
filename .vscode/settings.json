@@ -1,14 +1,24 @@
 
 {
+    "terminal.integrated.shell.windows": "c:\\Windows\\System32\\cmd.exe",
+
+    "terminal.integrated.shellArgs.windows":
+    [
+        "/k",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Auxiliary\\Build\\vcvars64.bat"
+    ],
+
     "files.exclude":
     {
         "**/.git": true,
         "**/target": true,
-        "Cargo.lock": true
+        "Cargo.lock": true,
+        "**/sdl2.dll": true
     },
 
     "cSpell.words":
     [
+        "GLEW",
         "Keycode",
         "Lsizeiptr",
         "Luint",

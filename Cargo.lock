@@ -1728,6 +1728,7 @@ dependencies = [
 name = "vectrex_core"
 version = "0.0.0"
 dependencies = [
+ "log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "vectrex_ecs 0.0.0",
  "vectrex_gfx 0.0.0",
  "vectrex_gfx_gui 0.0.0",
