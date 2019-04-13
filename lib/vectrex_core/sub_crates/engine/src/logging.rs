@@ -35,14 +35,23 @@ impl Log for Logger
         let module_path = record.module_path().unwrap_or_default();
         let args = record.args();
 
-        match self.log_mutex.lock()
+        let message = format!("{} | {} | {}", level, module_path, args);
+        let message_bytes = message.as_bytes();
+
         {
-            Ok(mut log_file) => write!(log_file, "{} | {} | {}", level, module_path, args).unwrap(),
-            _                => println!("** LOG WRITE ERROR **")
+            let mut log_file = self.log_mutex.lock()
+                .unwrap_or_else(|err| panic!("** LOG ACCESS ERROR: {} **", err.to_string()));
+
+            let written = log_file.write(message.as_bytes())
+                .unwrap_or_else(|err| panic!("** LOG WRITE ERROR: {} **", err.to_string()));
+
+            if written != message_bytes.len()
+            {
+                panic!("** LOG WRITE TRUNCATED: ({}/{}). **", written, message_bytes.len());
+            }
         }
 
-        println!("{} | {} | {}", level, module_path, args);
-
+        println!("{}", message);
     }
 
     fn flush(&self)
