@@ -2,18 +2,16 @@
 [package]
 name    = "vectrex_core"
 version = "0.0.0"
-authors = ["Chloe Strainge <nullpr.0@gmail.com>"]
+authors = [ "Chloe Strainge <nullpr.0@gmail.com>" ]
 edition = "2018"
 
 [lib]
 crate-type = [ "dylib" ]
 
 [dependencies]
-vectrex_ecs      = { path = "sub_crates/ecs"      }
+vectrex_engine   = { path = "sub_crates/engine"   }
 vectrex_os_shell = { path = "sub_crates/os_shell" }
 vectrex_gfx      = { path = "sub_crates/gfx"      }
 vectrex_gfx_gui  = { path = "sub_crates/gfx_gui"  }
+vectrex_ecs      = { path = "sub_crates/ecs"      }
 vectrex_srl      = { path = "sub_crates/srl"      }
-
-# lazy_static = "0.1.15"
-log = "0.4.6"

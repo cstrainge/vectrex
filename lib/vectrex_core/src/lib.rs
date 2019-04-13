@@ -1,11 +1,10 @@
 
+extern crate vectrex_engine;
 extern crate vectrex_os_shell;
 extern crate vectrex_ecs;
 extern crate vectrex_gfx;
 extern crate vectrex_gfx_gui;
 extern crate vectrex_srl;
-
-pub extern crate log;
 
 
 
@@ -45,5 +44,12 @@ pub mod srl
 
 
 
-mod logging;
-pub mod engine;
+pub mod engine
+{
+    pub use vectrex_engine::engine::*;
+
+    pub mod log
+    {
+        pub use vectrex_engine::log;
+    }
+}

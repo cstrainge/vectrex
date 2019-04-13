@@ -1,5 +1,8 @@
 
-use crate::{ logging::init_logging, log::info, os::shell::{ WindowProps, ShellWindow }};
+use vectrex_os_shell::{ WindowProps, ShellWindow };
+use log::info;
+
+use crate::logging::{ init_logging };
 
 
 

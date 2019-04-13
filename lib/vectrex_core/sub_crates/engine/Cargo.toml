@@ -1,0 +1,13 @@
+
+[package]
+name    = "vectrex_engine"
+version = "0.0.0"
+authors = [ "Chloe Strainge <nullpr.0@gmail.com>" ]
+edition = "2018"
+
+[lib]
+crate-type = [ "rlib" ]
+
+[dependencies]
+vectrex_os_shell = { path = "../os_shell" }
+log = "0.4.6"
