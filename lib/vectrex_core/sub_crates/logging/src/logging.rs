@@ -1,6 +1,7 @@
 
 use std::{ fs::File, io::Write, sync::Mutex };
 use log::{ Log, set_boxed_logger, set_max_level, Level, Metadata, Record };
+use chrono::{ Local, Datelike, Timelike };
 
 
 
@@ -26,16 +27,36 @@ impl Log for Logger
 {
     fn enabled(&self, _metadata: &Metadata) -> bool
     {
+        // TODO: Can filter based on log level/target.
         true
     }
 
     fn log(&self, record: &Record)
     {
+        fn format_text() -> String
+        {
+            let date_time = Local::now();
+
+            format!("{}/{:02}/{:02} - {}:{}:{}:{:06}",
+                date_time.year(),
+                date_time.month(),
+                date_time.day(),
+
+                date_time.hour(),
+                date_time.minute(),
+                date_time.second(),
+                date_time.nanosecond() / 1000)
+        }
+
+        let time_stamp = format_text();
+
+        let file = record.file().unwrap_or_default();
+        let line = record.line().unwrap_or_default();
         let level = record.level().to_string();
         let module_path = record.module_path().unwrap_or_default();
         let args = record.args();
 
-        let message = format!("{} | {} | {}\n", level, module_path, args);
+        let message = format!("{} | {}({}) | {} | {} | {}\n", time_stamp, file, line, level, module_path, args);
         let message_bytes = message.as_bytes();
 
         {

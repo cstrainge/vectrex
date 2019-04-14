@@ -10,3 +10,4 @@ crate-type = [ "rlib" ]
 
 [dependencies]
 log = "0.4.6"
+chrono = "0.4.6"

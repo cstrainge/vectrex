@@ -18,12 +18,14 @@
 
     "cSpell.words":
     [
+        "Datelike",
         "GLEW",
         "Keycode",
         "Lsizeiptr",
         "Luint",
         "Lvoid",
         "Scancode",
+        "Timelike",
         "actix",
         "cranelift",
         "keydown",
