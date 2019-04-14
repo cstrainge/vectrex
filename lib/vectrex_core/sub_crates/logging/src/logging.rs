@@ -37,7 +37,7 @@ impl Log for Logger
         {
             let date_time = Local::now();
 
-            format!("{}/{:02}/{:02} - {}:{}:{}:{:06}",
+            format!("{}/{:02}/{:02} - {:02}:{:02}:{:02}:{:06}",
                 date_time.year(),
                 date_time.month(),
                 date_time.day(),
@@ -52,11 +52,12 @@ impl Log for Logger
 
         let file = record.file().unwrap_or_default();
         let line = record.line().unwrap_or_default();
-        let level = record.level().to_string();
         let module_path = record.module_path().unwrap_or_default();
+        let level = record.level().to_string();
         let args = record.args();
 
-        let message = format!("{} | {}({}) | {} | {} | {}\n", time_stamp, file, line, level, module_path, args);
+        let message = format!("{} | {}({}) | {} | {} | {}\n",
+                              time_stamp, file, line, module_path, level, args);
         let message_bytes = message.as_bytes();
 
         {
