@@ -2,3 +2,5 @@
 /target
 sdl2.dll
 vectrex-log.txt
+
+/.vscode/launch.json
