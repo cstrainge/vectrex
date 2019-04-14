@@ -1732,6 +1732,7 @@ dependencies = [
  "vectrex_engine 0.0.0",
  "vectrex_gfx 0.0.0",
  "vectrex_gfx_gui 0.0.0",
+ "vectrex_logging 0.0.0",
  "vectrex_os_shell 0.0.0",
  "vectrex_srl 0.0.0",
 ]
@@ -1747,7 +1748,7 @@ dependencies = [
 name = "vectrex_engine"
 version = "0.0.0"
 dependencies = [
- "log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "vectrex_logging 0.0.0",
  "vectrex_os_shell 0.0.0",
 ]
 
@@ -1764,6 +1765,13 @@ name = "vectrex_gfx_gui"
 version = "0.0.0"
 
 [[package]]
+name = "vectrex_logging"
+version = "0.0.0"
+dependencies = [
+ "log 0.4.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "vectrex_net"
 version = "0.0.0"
 
@@ -1773,6 +1781,7 @@ version = "0.0.0"
 dependencies = [
  "sdl2 0.31.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "vectrex_gfx 0.0.0",
+ "vectrex_logging 0.0.0",
 ]
 
 [[package]]

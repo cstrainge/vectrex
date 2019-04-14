@@ -1,6 +1,9 @@
 
 extern crate sdl2;
+
 extern crate vectrex_gfx;
+extern crate vectrex_logging;
+
 
 use sdl2::{
         init,
@@ -12,6 +15,7 @@ use sdl2::{
         mouse::{ MouseState, MouseButton, MouseWheelDirection }
     };
 
+use vectrex_logging::log::{ info, error };
 use vectrex_gfx::render::Graphics;
 
 
@@ -45,6 +49,9 @@ impl ShellWindow
         let sdl_context = init()?;
         let sdl_video = sdl_context.video()?;
 
+        info!("Creating new host window: ('{}', {}, {}).", props.title, props.width, props.height);
+        info!("    Using SDL2 version: {}.", sdl2::version::revision());
+
         let mut window_builder = sdl_video.window(props.title, props.width, props.height);
 
         let window =
@@ -54,6 +61,7 @@ impl ShellWindow
             .build()
             .or_else(|err| Err(err.to_string()) )?;
 
+        info!("    Initializing window graphics.");
         let graphics = Graphics::new(&sdl_video, &window)?;
 
         Ok(ShellWindow
@@ -70,6 +78,7 @@ impl ShellWindow
     {
         if props.resizable
         {
+            info!("    Making window resizable.");
             return builder.resizable();
         }
 
@@ -91,7 +100,10 @@ impl ShellWindow
                 match event
                 {
                     Event::Quit {..} =>
-                        break 'main_loop,
+                        {
+                            info!("Received quit event.");
+                            break 'main_loop;
+                        },
 
                     Event::Window
                         {
@@ -198,8 +210,20 @@ impl ShellWindow
 
 
 
+impl Drop for ShellWindow
+{
+    fn drop(&mut self)
+    {
+        info!("Main window shutting down.");
+    }
+}
+
+
+
 fn sdl_fail(message: &'static str, reason: &String) -> !
 {
+    error!("Error: {}, reason: {}, SDL version: {}", message, reason, sdl2::version::revision());
+
     panic!("Error:       {}\n
             Reason:      {}\n
             SDL Version: {}",

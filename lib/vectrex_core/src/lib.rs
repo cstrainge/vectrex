@@ -1,4 +1,5 @@
 
+extern crate vectrex_logging;
 extern crate vectrex_engine;
 extern crate vectrex_os_shell;
 extern crate vectrex_ecs;
@@ -8,9 +9,16 @@ extern crate vectrex_srl;
 
 
 
-pub mod ecs
+pub mod logging
 {
-    pub use vectrex_ecs::*;
+    pub use vectrex_logging::*;
+}
+
+
+
+pub mod engine
+{
+    pub use vectrex_engine::engine::*;
 }
 
 
@@ -37,19 +45,14 @@ pub mod gfx
 
 
 
-pub mod srl
+pub mod ecs
 {
-    pub use vectrex_srl::*;
+    pub use vectrex_ecs::*;
 }
 
 
 
-pub mod engine
+pub mod srl
 {
-    pub use vectrex_engine::engine::*;
-
-    pub mod log
-    {
-        pub use vectrex_engine::log;
-    }
+    pub use vectrex_srl::*;
 }

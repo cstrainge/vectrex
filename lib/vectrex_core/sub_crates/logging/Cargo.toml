@@ -1,6 +1,6 @@
 
 [package]
-name    = "vectrex_engine"
+name    = "vectrex_logging"
 version = "0.0.0"
 authors = [ "Chloe Strainge <nullpr.0@gmail.com>" ]
 edition = "2018"
@@ -9,5 +9,4 @@ edition = "2018"
 crate-type = [ "rlib" ]
 
 [dependencies]
-vectrex_logging = { path = "../logging" }
-vectrex_os_shell = { path = "../os_shell" }
+log = "0.4.6"

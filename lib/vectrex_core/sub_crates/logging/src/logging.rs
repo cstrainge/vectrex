@@ -35,7 +35,7 @@ impl Log for Logger
         let module_path = record.module_path().unwrap_or_default();
         let args = record.args();
 
-        let message = format!("{} | {} | {}", level, module_path, args);
+        let message = format!("{} | {} | {}\n", level, module_path, args);
         let message_bytes = message.as_bytes();
 
         {
@@ -51,7 +51,7 @@ impl Log for Logger
             }
         }
 
-        println!("{}", message);
+        print!("{}", message);
     }
 
     fn flush(&self)
