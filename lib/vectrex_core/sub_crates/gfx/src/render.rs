@@ -4,9 +4,6 @@ use std::{ cmp::{ Ord, Ordering }, collections::BinaryHeap, os::raw::c_void };
 use sdl2::{ VideoSubsystem, video::{ Window, GLContext, GLProfile::Core } };
 use gl;
 
-use crate::shader::Shader;
-use crate::model::Model;
-
 
 
 pub trait Bindable
@@ -22,8 +19,7 @@ pub trait Bindable
 
 pub struct Graphics
 {
-    pub gl_context: GLContext,
-    // render_objects: BinaryHeap<RenderCommand>
+    pub gl_context: GLContext
 }
 
 

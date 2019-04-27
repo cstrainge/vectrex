@@ -1,0 +1,27 @@
+
+{
+    "version": "0.2.0",
+
+    "configurations":
+    [
+        {
+            "type":          "lldb",
+            "request":       "launch",
+            "preLaunchTask": "Debug Build",
+            "name":          "Editor Debug",
+            "cwd":           "${workspaceRoot}",
+            "program":       "${workspaceRoot}/target/debug/vedlitrex",
+            "args":          [],
+        },
+
+        {
+            "type":          "lldb",
+            "request":       "launch",
+            "preLaunchTask": "Release Build",
+            "name":          "Editor Release",
+            "cwd":           "${workspaceRoot}",
+            "program":       "${workspaceRoot}/target/release/vedlitrex",
+            "args":          [],
+        }
+    ]
+}

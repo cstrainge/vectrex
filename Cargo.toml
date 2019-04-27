@@ -3,8 +3,6 @@
 members = [
         "bin/vectrex",
         "bin/vedlitrex",
-        "bin/voxlatrex",
-        "bin/vemodlatrex",
 
         "lib/vectrex_core",
         "lib/vectrex_worlds",

@@ -9,7 +9,3 @@ extern crate gl;
 
 
 pub mod render;
-pub mod entity;
-pub mod camera;
-pub mod shader;
-pub mod model;
