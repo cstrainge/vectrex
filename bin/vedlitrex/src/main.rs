@@ -1,13 +1,13 @@
 
 extern crate vectrex_core;
 
-use vectrex_core::{ engine::Engine, os::shell::WindowProps };
+use vectrex_core::{ engine::new_engine, os::shell::WindowProps };
 
 
 
 fn main()
 {
-    let mut engine = Engine::new(WindowProps
+    let mut engine = new_engine(WindowProps
         {
             title: "Vectrex Editor",
             full_screen: false,
