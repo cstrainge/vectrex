@@ -8,10 +8,7 @@ use gl;
 
 pub trait Bindable
 {
-    #[inline]
     fn bind(&self);
-
-    #[inline]
     fn unbind(&self);
 }
 

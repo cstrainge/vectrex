@@ -1431,6 +1431,7 @@ dependencies = [
  "vectrex_logging 0.0.0",
  "vectrex_os_shell 0.0.0",
  "vectrex_srl 0.0.0",
+ "vectrex_traits 0.0.0",
 ]
 
 [[package]]
@@ -1486,6 +1487,10 @@ dependencies = [
  "nom-trace 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "nom_locate 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "vectrex_traits"
+version = "0.0.0"
 
 [[package]]
 name = "vectrex_worlds"

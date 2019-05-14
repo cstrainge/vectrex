@@ -66,9 +66,9 @@ impl ShellWindow
 
         Ok(ShellWindow
             {
-                sdl_context: sdl_context,
+                sdl_context,
                 _sdl_video: sdl_video,
-                window: window,
+                window,
                 graphics
             })
     }
@@ -105,59 +105,44 @@ impl ShellWindow
                             break 'main_loop;
                         },
 
-                    Event::Window
+                    Event::Window { win_event, .. } =>
                         {
-                            timestamp: _,
-                            window_id: _,
-                            win_event
-                        }
-                        => self.handle_window_event(win_event),
+                            self.handle_window_event(win_event);
+                        },
 
-                    Event::KeyDown
+                    Event::KeyDown { keycode, scancode, keymod, repeat, .. } =>
                         {
-                            timestamp: _,
-                            window_id: _,
-                            keycode, scancode, keymod, repeat
-                        }
-                        => self.handle_keydown_event(keycode, scancode, keymod, repeat),
+                            self.handle_keydown_event(keycode, scancode, keymod, repeat);
+                        },
 
-                    Event::KeyUp
+                    Event::KeyUp { keycode, scancode, keymod, repeat, .. } =>
                         {
-                            timestamp: _,
-                            window_id: _,
-                            keycode, scancode, keymod, repeat
-                        }
-                        => self.handle_keyup_event(keycode, scancode, keymod, repeat),
+                            self.handle_keyup_event(keycode, scancode, keymod, repeat);
+                        },
 
-                    Event::MouseMotion
+                    Event::MouseMotion { mousestate, x, y, xrel, yrel, .. } =>
                         {
-                            timestamp: _, window_id: _, which: _,
-                            mousestate, x, y, xrel, yrel
-                        }
-                        => self.handle_mouse_motion(mousestate, x, y, xrel, yrel),
+                            self.handle_mouse_motion(mousestate, x, y, xrel, yrel);
+                        },
 
-                    Event::MouseButtonDown
+                    Event::MouseButtonDown { mouse_btn, clicks, x, y, .. } =>
                         {
-                            timestamp: _, window_id: _, which: _,
-                            mouse_btn, clicks, x, y
-                        }
-                        => self.handle_mouse_button_down(mouse_btn, clicks, x, y),
+                            self.handle_mouse_button_down(mouse_btn, clicks, x, y);
+                        },
 
-                    Event::MouseButtonUp
+                    Event::MouseButtonUp { mouse_btn, clicks, x, y, .. } =>
                         {
-                            timestamp: _, window_id: _, which: _,
-                            mouse_btn, clicks, x, y
-                        }
-                        => self.handle_mouse_button_up(mouse_btn, clicks, x, y),
+                            self.handle_mouse_button_up(mouse_btn, clicks, x, y);
+                        },
 
-                    Event::MouseWheel
+                    Event::MouseWheel { x, y, direction, .. } =>
                         {
-                            timestamp: _, window_id: _, which: _,
-                            x, y, direction
-                        }
-                        => self.handle_mouse_wheel(x, y, direction),
+                            self.handle_mouse_wheel(x, y, direction);
+                        },
 
-                    _ => {}
+                    _ =>
+                        {
+                        }
                 }
 
                 self.graphics.render();
@@ -168,16 +153,9 @@ impl ShellWindow
 
     fn handle_window_event(&mut self, win_event: WindowEvent)
     {
-        match win_event
+        if let WindowEvent::Resized(width, height) = win_event
         {
-            WindowEvent::Resized(width, height) =>
-                {
-                    self.graphics.resize_view(width, height);
-                }
-
-            _ =>
-                {
-                }
+            self.graphics.resize_view(width, height);
         }
     }
 
@@ -220,7 +198,7 @@ impl Drop for ShellWindow
 
 
 
-fn sdl_fail(message: &'static str, reason: &String) -> !
+fn sdl_fail(message: &'static str, reason: &str) -> !
 {
     error!("Error: {}, reason: {}, SDL version: {}", message, reason, sdl2::version::revision());
 
