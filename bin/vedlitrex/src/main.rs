@@ -11,9 +11,9 @@ fn main()
         {
             title: "Vectrex Editor",
             full_screen: false,
-            resizable: true,
-            width: 800,
-            height: 600
+            resizable: false,
+            width: 1000,
+            height: 1000
         })
         .unwrap_or_else(|error_message| panic!("Error starting engine: {}", error_message));
 
