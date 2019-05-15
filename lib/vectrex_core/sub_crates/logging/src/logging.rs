@@ -89,15 +89,9 @@ pub fn init_logging() -> Result<(), String>
 {
     let logger = Logger::new()?;
 
-    match set_boxed_logger(Box::new(logger))
+    if let Err(error) = set_boxed_logger(Box::new(logger))
     {
-        Err(error) =>
-            {
-                let message = format!("Could not register engine logger: {}", error.to_string());
-                return Err(message);
-            },
-
-        _ => {}
+        return Err(format!("Could not register engine logger: {}", error.to_string()));
     }
 
     set_max_level(Level::Trace.to_level_filter());
