@@ -1,7 +1,8 @@
+
 [package]
 name = "vectrex_srl"
 version = "0.0.0"
-authors = [ "Chloe Strainge <nullpr.0@gmail.com>" ]
+authors = [ "Chloë Strainge <nullpr.0@gmail.com>" ]
 edition = "2018"
 
 [lib]

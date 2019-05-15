@@ -2,7 +2,7 @@
 [package]
 name    = "vectrex_traits"
 version = "0.0.0"
-authors = [ "Chloe Strainge <nullptr.0@gmail.com>" ]
+authors = [ "Chloë Strainge <nullptr.0@gmail.com>" ]
 edition = "2018"
 
 [lib]
