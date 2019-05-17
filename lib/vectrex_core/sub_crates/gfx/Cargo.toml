@@ -15,8 +15,8 @@ crate-type = [ "rlib" ]
 [dependencies]
 gl = "0.11.0"
 
-[target.'cfg(not(target_os="windows"))'.dependencies]
-sdl2 = "0.32.2"
+# [target.'cfg(not(target_os="linux"))'.dependencies]
+# sdl2 = "0.32.2"
 
-[target.'cfg(target_os="windows")'.dependencies]
+#[target.'cfg(target_os="windows")'.dependencies]
 sdl2 = { version = "0.31.0", features = [ "bundled" ] }
