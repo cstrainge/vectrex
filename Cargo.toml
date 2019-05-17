@@ -9,3 +9,9 @@ members = [
         "lib/vectrex_ai",
         "lib/vectrex_net"
     ]
+
+
+[profile.release]
+lto = true
+opt-level = 3
+debug = false
