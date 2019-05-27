@@ -14,5 +14,3 @@ vectrex_logging  = { path = "sub_crates/logging"  }
 vectrex_engine   = { path = "sub_crates/engine"   }
 vectrex_os_shell = { path = "sub_crates/os_shell" }
 vectrex_gfx      = { path = "sub_crates/gfx"      }
-vectrex_gfx_gui  = { path = "sub_crates/gfx_gui"  }
-vectrex_srl      = { path = "sub_crates/srl"      }

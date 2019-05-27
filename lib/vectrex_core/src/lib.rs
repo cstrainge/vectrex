@@ -4,8 +4,6 @@ extern crate vectrex_logging;
 extern crate vectrex_engine;
 extern crate vectrex_os_shell;
 extern crate vectrex_gfx;
-extern crate vectrex_gfx_gui;
-extern crate vectrex_srl;
 
 
 
