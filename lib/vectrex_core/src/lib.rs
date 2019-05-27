@@ -41,16 +41,4 @@ pub mod os
 pub mod gfx
 {
     pub use vectrex_gfx::*;
-
-    pub mod gui
-    {
-        pub use vectrex_gfx_gui::*;
-    }
-}
-
-
-
-pub mod srl
-{
-    pub use vectrex_srl::*;
 }
