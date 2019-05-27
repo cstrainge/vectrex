@@ -13,10 +13,7 @@ crate-type = [ "rlib" ]
 #bindgen = "0.48.0"
 
 [dependencies]
+vectrex_traits = { path = "../traits" }
+
 gl = "0.11.0"
-
-# [target.'cfg(not(target_os="linux"))'.dependencies]
-# sdl2 = "0.32.2"
-
-#[target.'cfg(target_os="windows")'.dependencies]
 sdl2 = { version = "0.31.0", features = [ "bundled" ] }

@@ -6,6 +6,8 @@
 extern crate sdl2;
 extern crate gl;
 
+extern crate vectrex_traits;
+
 
 
 pub mod render;

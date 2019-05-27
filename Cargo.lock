@@ -1418,6 +1418,7 @@ version = "0.0.0"
 dependencies = [
  "vectrex_logging 0.0.0",
  "vectrex_os_shell 0.0.0",
+ "vectrex_traits 0.0.0",
 ]
 
 [[package]]
@@ -1426,6 +1427,7 @@ version = "0.0.0"
 dependencies = [
  "gl 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "sdl2 0.31.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "vectrex_traits 0.0.0",
 ]
 
 [[package]]
@@ -1451,6 +1453,7 @@ dependencies = [
  "sdl2 0.31.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "vectrex_gfx 0.0.0",
  "vectrex_logging 0.0.0",
+ "vectrex_traits 0.0.0",
 ]
 
 [[package]]

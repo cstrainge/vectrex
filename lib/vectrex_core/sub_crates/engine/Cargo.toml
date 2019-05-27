@@ -9,5 +9,6 @@ edition = "2018"
 crate-type = [ "rlib" ]
 
 [dependencies]
-vectrex_logging = { path = "../logging" }
+vectrex_traits   = { path = "../traits" }
+vectrex_logging  = { path = "../logging" }
 vectrex_os_shell = { path = "../os_shell" }

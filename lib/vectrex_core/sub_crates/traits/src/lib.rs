@@ -11,11 +11,11 @@ pub mod graphics;
 pub mod interface
 {
     use crate::eventing::{ WindowHandler, MouseHandler, KeyboardHandler };
-    use crate::graphics::Renderable;
+    use crate::graphics::RenderHandler;
 
 
 
-    pub trait InterfaceLayer: WindowHandler + MouseHandler + KeyboardHandler + Renderable
+    pub trait InterfaceLayer: WindowHandler + MouseHandler + KeyboardHandler + RenderHandler
     {
         fn name(&self) -> String;
 
@@ -25,6 +25,7 @@ pub mod interface
         fn is_capturing_mouse(&self) -> bool;
         fn is_capturing_keyboard(&self) -> bool;
 
-        fn is_exclusive(&self) -> bool;
+        fn is_event_exclusive(&self) -> bool;
+        fn is_draw_exclusive(&self) -> bool;
     }
 }

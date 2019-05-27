@@ -1,6 +1,7 @@
 
 extern crate sdl2;
 
+extern crate vectrex_traits;
 extern crate vectrex_gfx;
 extern crate vectrex_logging;
 
@@ -15,6 +16,7 @@ use sdl2::{
         mouse::{ MouseState, MouseButton, MouseWheelDirection }
     };
 
+use vectrex_traits::graphics::Renderer;
 use vectrex_logging::log::{ info, error };
 use vectrex_gfx::render::Graphics;
 

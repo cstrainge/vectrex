@@ -12,6 +12,10 @@
             "cwd":           "${workspaceRoot}",
             "program":       "${workspaceRoot}/target/debug/vedlitrex",
             "args":          [],
+            "env":
+            {
+                "LD_LIBRARY_PATH": "${workspaceRoot}/target/debug/build/sdl2-sys-8a8f0097a5df75df/out/lib:${workspaceRoot}/target/debug/build/miniz-sys-2e358637253c0816/out:${workspaceRoot}/target/debug/deps:${workspaceRoot}/target/debug"
+            }
         },
 
         {

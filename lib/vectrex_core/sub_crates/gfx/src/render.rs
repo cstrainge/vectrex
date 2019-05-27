@@ -4,13 +4,7 @@ use std::{ cmp::{ Ord, Ordering }, collections::BinaryHeap, os::raw::c_void };
 use sdl2::{ VideoSubsystem, video::{ Window, GLContext, GLProfile::Core } };
 use gl;
 
-
-
-pub trait Bindable
-{
-    fn bind(&self);
-    fn unbind(&self);
-}
+use vectrex_traits::graphics::{ Renderer, CameraId, PassId, DrawRequest };
 
 
 
@@ -48,8 +42,30 @@ impl Graphics
                 //render_objects: BinaryHeap::new()
             })
     }
+}
 
-    pub fn resize_view(&self, width: i32, height: i32)
+impl Renderer for Graphics
+{
+    fn name(&self) -> String
+    {
+        "OpenGL Renderer".to_string()
+    }
+
+    fn info(&self) -> String
+    {
+        "Info about the active OpenGL implementation...".to_string()
+    }
+
+    fn new_pass(&mut self, _camera: CameraId) -> PassId
+    {
+        PassId(0)
+    }
+
+    fn submit(&mut self, _draw_request: &DrawRequest)
+    {
+    }
+
+    fn resize_view(&self, width: i32, height: i32)
     {
         unsafe
         {
@@ -57,7 +73,7 @@ impl Graphics
         }
     }
 
-    pub fn render(&self)
+    fn render(&self)
     {
         unsafe
         {
